@@ -10,6 +10,14 @@ import { cn } from '@/lib/utils'
 import { $activeGatewayProfile, $profiles, normalizeProfileKey } from '@/store/profile'
 import { $toolViewMode, setToolViewMode } from '@/store/tool-view'
 import { $translucency, setTranslucency } from '@/store/translucency'
+import {
+  $chatWidth,
+  $textScale,
+  type ChatWidthId,
+  setChatWidth,
+  setTextScale,
+  type TextScaleId
+} from '@/store/ui-scale'
 import { useTheme } from '@/themes/context'
 import { installVscodeThemeFromMarketplace } from '@/themes/install'
 import { isUserTheme, removeUserTheme, resolveTheme } from '@/themes/user-themes'
@@ -137,6 +145,8 @@ export function AppearanceSettings() {
   const { themeName, mode, availableThemes, setTheme, setMode } = useTheme()
   const toolViewMode = useStore($toolViewMode)
   const translucency = useStore($translucency)
+  const textScale = useStore($textScale)
+  const chatWidth = useStore($chatWidth)
   const profiles = useStore($profiles)
   const activeProfileKey = normalizeProfileKey(useStore($activeGatewayProfile))
   const a = t.settings.appearance
@@ -154,6 +164,19 @@ export function AppearanceSettings() {
     { id: 'product', label: a.product },
     { id: 'technical', label: a.technical }
   ] as const
+
+  const textScaleOptions = [
+    { id: 'compact', label: a.textSizeCompact },
+    { id: 'default', label: a.textSizeDefault },
+    { id: 'large', label: a.textSizeLarge },
+    { id: 'huge', label: a.textSizeHuge }
+  ] as const satisfies readonly { id: TextScaleId; label: string }[]
+
+  const chatWidthOptions = [
+    { id: 'cozy', label: a.chatWidthCozy },
+    { id: 'wide', label: a.chatWidthWide },
+    { id: 'full', label: a.chatWidthFull }
+  ] as const satisfies readonly { id: ChatWidthId; label: string }[]
 
   return (
     <SettingsContent>
@@ -183,6 +206,36 @@ export function AppearanceSettings() {
             }
             description={a.colorModeDesc}
             title={a.colorMode}
+          />
+
+          <ListRow
+            action={
+              <SegmentedControl
+                onChange={id => {
+                  triggerHaptic('selection')
+                  setTextScale(id)
+                }}
+                options={textScaleOptions}
+                value={textScale}
+              />
+            }
+            description={a.textSizeDesc}
+            title={a.textSizeTitle}
+          />
+
+          <ListRow
+            action={
+              <SegmentedControl
+                onChange={id => {
+                  triggerHaptic('selection')
+                  setChatWidth(id)
+                }}
+                options={chatWidthOptions}
+                value={chatWidth}
+              />
+            }
+            description={a.chatWidthDesc}
+            title={a.chatWidthTitle}
           />
 
           <ListRow

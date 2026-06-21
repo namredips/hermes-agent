@@ -278,12 +278,76 @@ export const slateTheme: DesktopTheme = {
   }
 }
 
+/**
+ * cmux — calm terminal green on near-black. Tuned to the cmux/terminal-IDE look:
+ * a softer, more readable green than the neon `cyberpunk` matrix theme, warm
+ * lavender identifiers, and JetBrains Mono throughout. Dark-only by design.
+ */
+export const cmuxTheme: DesktopTheme = {
+  name: 'cmux',
+  label: 'cmux',
+  description: 'Calm terminal green on near-black — cmux vibes',
+  colors: {
+    background: '#0a0e0a',
+    foreground: '#c8e6c9',
+    card: '#0f150f',
+    cardForeground: '#c8e6c9',
+    muted: '#162016',
+    mutedForeground: '#6f8f70',
+    popover: '#0d130d',
+    popoverForeground: '#c8e6c9',
+    primary: '#4ade80',
+    primaryForeground: '#06120a',
+    secondary: '#1a2a1a',
+    secondaryForeground: '#a5d6a7',
+    accent: '#15241a',
+    accentForeground: '#86efac',
+    border: '#24382a',
+    input: '#24382a',
+    ring: '#4ade80',
+    midground: '#4ade80',
+    composerRing: '#4ade80',
+    destructive: '#f0635a',
+    destructiveForeground: '#0a0e0a',
+    sidebarBackground: '#080b08',
+    sidebarBorder: '#16241a',
+    userBubble: '#132016',
+    userBubbleBorder: '#2c4434'
+  },
+  typography: {
+    fontSans: `"JetBrains Mono", ${SYSTEM_MONO}`,
+    fontMono: `"JetBrains Mono", ${SYSTEM_MONO}`
+  },
+  terminal: {
+    foreground: '#c8e6c9',
+    cursor: '#4ade80',
+    selectionBackground: '#2c4434',
+    black: '#0a0e0a',
+    red: '#f0635a',
+    green: '#4ade80',
+    yellow: '#d4b758',
+    blue: '#6ab0f3',
+    magenta: '#b39ddb',
+    cyan: '#5fc9c9',
+    white: '#c8e6c9',
+    brightBlack: '#6f8f70',
+    brightRed: '#ff7a70',
+    brightGreen: '#86efac',
+    brightYellow: '#e6cf7a',
+    brightBlue: '#8cc6ff',
+    brightMagenta: '#cbb6f0',
+    brightCyan: '#7fdede',
+    brightWhite: '#e8f5e9'
+  }
+}
+
 export const BUILTIN_THEMES: Record<string, DesktopTheme> = {
   nous: nousTheme,
   midnight: midnightTheme,
   ember: emberTheme,
   mono: monoTheme,
   cyberpunk: cyberpunkTheme,
+  cmux: cmuxTheme,
   slate: slateTheme
 }
 
